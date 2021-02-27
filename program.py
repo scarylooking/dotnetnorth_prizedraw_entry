@@ -3,6 +3,9 @@ import boto3
 import uuid
 import logging
 import os
+import utility
+
+utility.configure_logger()
 
 
 def lambda_handler(event, context):
