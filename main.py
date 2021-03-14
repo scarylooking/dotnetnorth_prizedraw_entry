@@ -18,7 +18,11 @@ body = {
     'first-preference': f'{random_string()}'
 }
 
-test_event_body = json.dumps(body)
-test_event = {'body': test_event_body}
+headers = {
+    'X-Forwarded-For': '1.2.3.4',
+    'User-Agent': 'boop-the-snoot'
+}
+
+test_event = {'body': json.dumps(body), 'headers': json.dumps(headers) }
 test_context = type('obj', (object,), {'aws_request_id': str(uuid.uuid4())})()
 print(program.lambda_handler(test_event, test_context))
